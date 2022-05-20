@@ -1,0 +1,1 @@
+export const convertMsToDate = (dateMs) => (new Date(parseInt(dateMs)).toLocaleString('en-US'));

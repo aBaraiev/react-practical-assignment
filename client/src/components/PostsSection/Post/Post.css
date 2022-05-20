@@ -1,0 +1,9 @@
+.post__img-container {
+    height:300px;
+    overflow-x: hidden;
+}
+
+.post__img {
+    height: 100%;
+    width: auto !important;
+}

@@ -1,1 +1,1 @@
-[]
+[{"id":1,"title":"Post 1","username":"Viktor","likes":["Viktor"],"dislikes":[],"date":"1653071196474"},{"id":2,"title":"Post 2","username":"Viktor","likes":["Viktor"],"dislikes":[],"date":"1653071204528","imageSrc":"http://localhost:8080/2_1653071204521.jpeg","comments":[]}]
