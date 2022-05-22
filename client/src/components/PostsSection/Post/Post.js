@@ -2,10 +2,9 @@ import React from 'react';
 import './Post.css';
 import {convertMsToDate} from "../../../helpers/convertMsToDate";
 import {useDispatch, useSelector} from "react-redux";
-import {deletePost, updatePostById} from "../../../redux/actions/postActions";
+import {deletePostFromServer, updatePostDataOnServer} from "../../../redux/actions/post_actions/async_post_actions";
 
-
-const Post = ({id, title, username, likes, dislikes, date, imageSrc}) => {
+const Post = React.memo(({id, title, username, likes, dislikes, date, imageSrc}) => {
 
     const dispatch = useDispatch();
     const currentUser = useSelector(state => state.user.currentUser)
@@ -13,23 +12,25 @@ const Post = ({id, title, username, likes, dislikes, date, imageSrc}) => {
     const isDislikedByCurrentUser = dislikes.some(u => u === currentUser);
 
     const handleDeletePost = () => {
-        dispatch(deletePost(id));
+        dispatch(deletePostFromServer(id));
     }
 
     const handleLikeClick = () => {
-        dispatch(updatePostById({
-            id,
-            likes: [...likes, currentUser],
-            dislikes: [...dislikes].filter(u => u !== currentUser)
-        }))
+        dispatch(updatePostDataOnServer({
+                id,
+                likes: [...likes, currentUser],
+                dislikes: [...dislikes].filter(u => u !== currentUser)
+            }
+        ))
     }
 
     const handleDislikeClick = () => {
-        dispatch(updatePostById({
-            id,
-            dislikes: [...dislikes, currentUser],
-            likes: [...likes].filter(u => u !== currentUser)
-        }))
+        dispatch(updatePostDataOnServer({
+                id,
+                likes: [...likes].filter(u => u !== currentUser),
+                dislikes: [...dislikes, currentUser]
+            }
+        ))
     }
 
     return (
@@ -89,6 +90,6 @@ const Post = ({id, title, username, likes, dislikes, date, imageSrc}) => {
             {/*</ul>*/}
         </div>
     );
-};
+});
 
 export default Post;

@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {getPostsByPage} from "../../redux/actions/postActions"
 import Post from "./Post/Post";
+import {getAllPostsFromServer} from "../../redux/actions/post_actions/async_post_actions";
 
 const PostsSection = () => {
 
@@ -10,7 +10,7 @@ const PostsSection = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getPostsByPage(currentPage))
+        dispatch(getAllPostsFromServer(currentPage))
     }, [currentPage])
 
     return (

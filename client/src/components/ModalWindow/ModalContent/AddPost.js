@@ -4,7 +4,7 @@ import useTextInput from "../../../hooks/useTextInput";
 import {useDispatch, useSelector} from "react-redux";
 import {hideModal} from "../../../redux/actions/modalWindowActions";
 import useImageInput from "../../../hooks/useImageInput";
-import {uploadPost, uploadPostImage} from "../../../redux/actions/postActions";
+import {uploadPostImageOnServer, uploadPostOnServer} from "../../../redux/actions/post_actions/async_post_actions";
 
 const AddPost = ({text = ''}) => {
 
@@ -22,13 +22,15 @@ const AddPost = ({text = ''}) => {
     const handleCreatePost = () => {
         const title = postTitle.trim();
         if (title) {
-            dispatch(uploadPost(title, username));
-            if(postImage.img) {
-                const id = posts.length + 1;
-                dispatch(uploadPostImage(id, postImage.img));
+            dispatch(uploadPostOnServer(postTitle, username));
+            if (postImage.img) {
+                let id = 1;
+                if (posts.length > 0)
+                    id = posts[posts.length - 1].id + 1
+                dispatch(uploadPostImageOnServer(id, postImage.img))
             }
             dispatch(hideModal());
-        }else {
+        } else {
             alert('Post title can not be blank');
         }
     }
