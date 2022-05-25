@@ -10,9 +10,6 @@ const MainPage = () => {
 
     const currentUser = useSelector(state => state.user.currentUser);
     const navigate = useNavigate();
-    const posts = useSelector(state => state.posts.posts)
-
-    const reload = () => window.location.reload();
 
     useEffect(() => {
         if (!currentUser)
@@ -21,7 +18,7 @@ const MainPage = () => {
 
     return (
         <div>
-            <ModalWindow reload={reload}/>
+            <ModalWindow/>
             <Header/>
             <SearchPostField/>
             <PostsSection/>

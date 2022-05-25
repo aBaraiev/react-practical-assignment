@@ -1,1 +1,2 @@
 export const ADD_POST_MODAL = 'ADD_POST_MODAL';
+export const EDIT_POST_MODAL = 'EDIT_POST_MODAL';

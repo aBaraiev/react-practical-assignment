@@ -1,1 +1,1 @@
-[{"id":1,"title":"sfasfa","username":"Viktor","likes":[],"dislikes":["Viktor"],"date":"1653256888157","imageSrc":"http://localhost:8080/1_1653256888149.jpeg"}]
+[{"id":1,"title":"Зщые 4","username":"Viktor","likes":["Albert"],"dislikes":["Viktor"],"date":"1653491460817","imageSrc":"http://localhost:8080/1_1653493708701.jpeg"},{"id":2,"title":"Post 2","username":"Albert","likes":[],"dislikes":["Albert","Viktor"],"date":"1653491948390","imageSrc":"http://localhost:8080/2_1653491948378.jpeg","comments":[]}]

@@ -3,8 +3,10 @@ import './Post.css';
 import {convertMsToDate} from "../../../helpers/convertMsToDate";
 import {useDispatch, useSelector} from "react-redux";
 import {deletePostFromServer, updatePostDataOnServer} from "../../../redux/actions/post_actions/async_post_actions";
+import {setPostToBeEdited, showModal} from "../../../redux/actions/modalWindowActions";
+import {EDIT_POST_MODAL} from "../../../constants/modalWindowTypes";
 
-const Post = React.memo(({id, title, username, likes, dislikes, date, imageSrc}) => {
+const Post = React.memo(({id, title, username, likes, dislikes, date, imageSrc, comments}) => {
 
     const dispatch = useDispatch();
     const currentUser = useSelector(state => state.user.currentUser)
@@ -31,6 +33,11 @@ const Post = React.memo(({id, title, username, likes, dislikes, date, imageSrc})
                 dislikes: [...dislikes, currentUser]
             }
         ))
+    }
+
+    const handleEditPost = () => {
+        dispatch(setPostToBeEdited({title, id}));
+        dispatch(showModal(EDIT_POST_MODAL));
     }
 
     return (
@@ -71,7 +78,11 @@ const Post = React.memo(({id, title, username, likes, dislikes, date, imageSrc})
                     (currentUser === username)
                     &&
                     <div className='p-2 d-flex justify-content-end w-50'>
-                        <button className='btn btn-warning me-2'>Edit</button>
+                        <button className='btn btn-warning me-2'
+                                onClick={handleEditPost}
+                        >
+                            Edit
+                        </button>
                         <button className='btn btn-danger'
                                 onClick={handleDeletePost}
                         >
